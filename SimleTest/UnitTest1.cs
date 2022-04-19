@@ -21,6 +21,7 @@ namespace SimleTest
             driver.Manage().Window.Maximize();
         }
 
+   
         [Test]
         public void Test1()
         {
@@ -29,9 +30,20 @@ namespace SimleTest
             query.Submit();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until((d) => { return d.Title.ToLower().StartsWith("cheese"); });
-            ((ITakesScreenshot)driver.FindElement(_img)).GetScreenshot().SaveAsFile("d:/C# Tests/SimleTest/SimleTest/Screens/Screen.png" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss"), ScreenshotImageFormat.Png);
+
+
+            IWebElement webElement = driver.FindElement(_img);
+            string path = "d:/C# Tests/SimleTest/SimleTest/Screens/Screen.png" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            TakeSreenshot(webElement, path, ScreenshotImageFormat.Png);
+
             Console.WriteLine("Page title is: " + driver.Title);
         }
+        public void TakeSreenshot(IWebElement webElement, string path, ScreenshotImageFormat format)
+        {
+            ITakesScreenshot screenshot = webElement as ITakesScreenshot;
+            screenshot.GetScreenshot().SaveAsFile(path, format);
+        }
+
 
         [TearDown]
         public void TearDown()
