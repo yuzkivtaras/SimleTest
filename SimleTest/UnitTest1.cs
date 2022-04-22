@@ -29,7 +29,7 @@ namespace SimleTest
             wait.Until((d) => { return d.Title.ToLower().StartsWith("cheese"); });
 
             IWebElement webElement = driver.FindElement(_img);
-            string path = "d:/AQA/C#/.NetProjects AQA/SimleTest/SimleTest/Screens.png" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            string path = "d:/AQA/C#/.NetProjects AQA/SimleTest/SimleTest/Screens/Screen.png" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             TakeSreenshot(webElement, path, ScreenshotImageFormat.Png);
 
             Console.WriteLine("Page title is: " + driver.Title);
