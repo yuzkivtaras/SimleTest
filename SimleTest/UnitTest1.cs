@@ -3,8 +3,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
-using System.IO;
-using System.Collections;
 
 namespace SimleTest
 {
@@ -20,8 +18,7 @@ namespace SimleTest
             driver.Navigate().GoToUrl("https://www.google.com/");
             driver.Manage().Window.Maximize();
         }
-
-   
+  
         [Test]
         public void Test1()
         {
@@ -31,19 +28,18 @@ namespace SimleTest
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until((d) => { return d.Title.ToLower().StartsWith("cheese"); });
 
-
             IWebElement webElement = driver.FindElement(_img);
-            string path = "d:/C# Tests/SimleTest/SimleTest/Screens/Screen.png" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            string path = "d:/AQA/C#/.NetProjects AQA/SimleTest/SimleTest/Screens.png" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             TakeSreenshot(webElement, path, ScreenshotImageFormat.Png);
 
             Console.WriteLine("Page title is: " + driver.Title);
         }
+
         public void TakeSreenshot(IWebElement webElement, string path, ScreenshotImageFormat format)
         {
             ITakesScreenshot screenshot = webElement as ITakesScreenshot;
             screenshot.GetScreenshot().SaveAsFile(path, format);
         }
-
 
         [TearDown]
         public void TearDown()
